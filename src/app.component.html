@@ -1,0 +1,267 @@
+<!--<mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>BAC</span>
+      <span class="example-spacer"></span>
+      <button class="buttom-header" mat-raised-button (click)="openDialog()" ><mat-icon aria-hidden="false" aria-label="Example home icon">power_settings_new</mat-icon></button>
+      <!-- <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon"><a href="http://www.youtube.com.pe/c/writecode" target="_blank">verified_user</a></mat-icon>
+      <mat-icon aria-hidden="false" aria-label="Example home icon">verified_user</mat-icon>
+      <mat-icon class="example-icon" aria-hidden="false" aria-label="Example delete icon">delete</mat-icon> --!>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  -->
+  
+  <div class="config">
+
+      <label>&nbsp;&nbsp;Consulta General: &nbsp;&nbsp;</label>
+      <mat-form-field>
+          <mat-label>Favorite food</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let food of foods" [value]="food.value">
+              {{food.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+      <button class="boton-consult material-icons" mat-raised-button color="warn" data-toggle="collapse" data-target="#collapseExample"><mat-icon aria-hidden="false" aria-label="Example home icon">unfold_more</mat-icon></button>
+
+  </div>
+  
+    
+    <div class="collapse" id="collapseExample">
+      <div class="card card-body">
+        <div class="cont-config container">
+        <table style="margin: 0 auto;">
+          <tr>
+            <th>
+
+                <label>Filtros </label><br>
+
+                <mat-form-field>
+                    <mat-select placeholder="Tipo de trans" [formControl]="tipoTrans" multiple>
+                      <mat-select-trigger>
+                        {{tipoTrans.value ? tipoTrans.value[0] : ''}}
+                        <span *ngIf="tipoTrans.value?.length > 1" class="example-additional-selection">
+                          (+{{tipoTrans.value.length - 1}} {{tipoTrans.value?.length === 2 ? 'other' : 'others'}})
+                        </span>
+                      </mat-select-trigger>
+                      <mat-option *ngFor="let tipoTrans of tipoTransList" [value]="tipoTrans">{{tipoTrans}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+            </th>
+
+            <th>
+                <label>Columnas </label><br>
+                <mat-form-field>
+                    <mat-select placeholder="Tipo de trans" [formControl]="tipoTrans" multiple>
+                      <mat-select-trigger>
+                        {{tipoTrans.value ? tipoTrans.value[0] : ''}}
+                        <span *ngIf="tipoTrans.value?.length > 1" class="example-additional-selection">
+                          (+{{tipoTrans.value.length - 1}} {{tipoTrans.value?.length === 2 ? 'other' : 'others'}})
+                        </span>
+                      </mat-select-trigger>
+                      <mat-option *ngFor="let tipoTrans of tipoTransList" [value]="tipoTrans">{{tipoTrans}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                </th>
+                <th>
+                    <button class="mdc-icon-button material-icons" mat-raised-button color="warn" data-toggle="collapse" data-target="#collapseExample" mat-raised-button (click)="drawer.toggle()">Aplicar</button>
+                </th>
+                <th>
+                    <button class="mdc-icon-button material-icons" mat-raised-button color="white" data-toggle="collapse" data-target="#collapseExample" mat-raised-button (click)="drawer.toggle()">Guardar</button>
+                </th>
+          </tr>
+        </table>
+
+          
+
+            
+      </div>
+      </div>
+    </div>
+
+    
+    <div class="collapse" id="collapseFiltros">
+
+  <div class="container">
+    <table>
+      <tr>
+        <td class="celda_sin">
+            <!-- <label>Cadena de Comercio </label><br>-->
+          <!-- 
+            <mat-form-field>
+                <mat-select placeholder="Cad. Comercio" [formControl]="cadComercio" multiple>
+                  <mat-select-trigger>
+                    {{cadComercio.value ? cadComercio.value[0] : ''}}
+                    <span *ngIf="cadComercio.value?.length > 1" class="example-additional-selection">
+                      (+{{cadComercio.value.length - 1}} {{cadComercio.value?.length === 2 ? 'other' : 'others'}})
+                    </span>
+                  </mat-select-trigger>
+                  <mat-option *ngFor="let cadComercio of cadComList" [value]="cadComercio">{{cadComercio}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              -->
+              <!-- 
+              <mat-form-field>
+                  <mat-select [formControl]="cadComercio" placeholder="Bank" multiple>
+                    <mat-option>
+                      <ngx-mat-select-search [formControl]="cadComList"></ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let cadComercio of cadComList" [value]="cadComercio">
+                      {{cadComercio}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                -->
+                <mat-form-field>
+                  
+                    <mat-label>Cadena de Comercio</mat-label>
+                    <mat-select [formControl]="cadComercio" multiple>
+                      
+                        <mat-option>
+                            <ngx-mat-select-search [formControl]="cadComercio"></ngx-mat-select-search>
+                        </mat-option>
+
+                      <mat-option *ngFor="let cadComercio of cadComList" [value]="cadComercio">{{cadComercio}}</mat-option>
+                    </mat-select>
+                    
+                    <!--
+                    <mat-select [formControl]="cadComercio" placeholder="Cadena Comercio" [multiple]="true" #multiSelect>
+                        <mat-option>
+                        <ngx-mat-select-search [formControl]="cadComercio"></ngx-mat-select-search>
+                        </mat-option>
+                        <mat-option *ngFor="let cadComercio of cadComList | async" [value]="cadComercio">
+                          {{cadComercio}}
+                        </mat-option>
+                      </mat-select>
+                      -->
+                </mat-form-field>
+                
+        </td>
+
+        
+        <td>
+            <mat-form-field>
+                <mat-select placeholder="Comercios" [formControl]="comercios" multiple>
+                  <mat-select-trigger>
+                    {{comercios.value ? comercios.value[0] : ''}}
+                    <span *ngIf="comercios.value?.length > 1" class="example-additional-selection">
+                      (+{{comercios.value.length - 1}} {{comercios.value?.length === 2 ? 'other' : 'others'}})
+                    </span>
+                  </mat-select-trigger>
+                  <mat-option *ngFor="let comercios of comerciosList" [value]="comercios">{{comercios}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+    
+        </td>
+            
+        <td>
+                       
+            <mat-form-field>
+                <mat-select placeholder="Terminales" [formControl]="terminal" multiple>
+                  <mat-select-trigger>
+                    {{terminal.value ? terminal.value[0] : ''}}
+                    <span *ngIf="terminal.value?.length > 1" class="example-additional-selection">
+                      (+{{terminal.value.length - 1}} {{terminal.value?.length === 2 ? 'other' : 'others'}})
+                    </span>
+                  </mat-select-trigger>
+                  <mat-option *ngFor="let terminal of terminalList" [value]="terminal">{{terminal}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+    
+        </td>
+    
+        <td>
+            <mat-form-field>
+                <mat-select placeholder="Tipo de Transacción" [formControl]="tipoTrans" multiple>
+                  <mat-select-trigger>
+                    {{tipoTrans.value ? tipoTrans.value[0] : ''}}
+                    <span *ngIf="tipoTrans.value?.length > 1" class="example-additional-selection">
+                      (+{{tipoTrans.value.length - 1}} {{tipoTrans.value?.length === 2 ? 'other' : 'others'}})
+                    </span>
+                  </mat-select-trigger>
+                  <mat-option *ngFor="let tipoTrans of tipoTransList" [value]="tipoTrans">{{tipoTrans}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+        </td>
+    
+        <td>
+            <mat-form-field>
+                <mat-select placeholder="Moneda" [formControl]="moneda" multiple>
+                  <mat-select-trigger>
+                    {{moneda.value ? moneda.value[0] : ''}}
+                    <span *ngIf="moneda.value?.length > 1" class="example-additional-selection">
+                      (+{{moneda.value.length - 1}} {{moneda.value?.length === 2 ? 'other' : 'others'}})
+                    </span>
+                  </mat-select-trigger>
+                  <mat-option *ngFor="let moneda of monedaList" [value]="moneda">{{moneda}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+        </td>
+    
+        <td>
+            <mat-form-field>
+                <mat-select placeholder="Estado" [formControl]="estado" multiple>
+                  <mat-select-trigger>
+                    {{estado.value ? estado.value[0] : ''}}
+                    <span *ngIf="estado.value?.length > 1" class="example-additional-selection">
+                      (+{{estado.value.length - 1}} {{estado.value?.length === 2 ? 'other' : 'others'}})
+                    </span>
+                  </mat-select-trigger>
+                  <mat-option *ngFor="let estado of estadoList" [value]="estado">{{estado}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+        </td>
+      </tr>
+      <!--SEGUNDO TR-->
+      <tr>
+          <td class="celda_sin">
+              <mat-form-field>
+                  <input matInput [matDatepicker]="picker" placeholder="Fecha Desde">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+          </td>
+          <td>
+      
+              <mat-form-field>
+                  <input matInput [matDatepicker]="picker2" placeholder="Fecha Hasta">
+                  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                  <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+      
+          </td>
+              
+          <td>
+              <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Hora Desde" value="">
+                  </mat-form-field>
+      
+          </td>
+      
+          <td>
+              <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Hora Hasta" value="">
+                  </mat-form-field>
+          </td>
+      
+          <td>
+              <div >
+                  
+                  <div class="col-6" ALIGN="right">
+                      <button mat-raised-button color="warn">Buscar</button>
+                  </div>
+                </div>
+          </td>
+    
+      </tr>
+    </table>
+  </div>
+</div>
+
+    <button class="mat-a material-icons" mat-raised-button color="warn" data-toggle="collapse" data-target="#collapseFiltros"><mat-icon aria-hidden="false" aria-label="Example home icon">expand_more</mat-icon></button>
+    
+      
+
+<router-outlet></router-outlet>

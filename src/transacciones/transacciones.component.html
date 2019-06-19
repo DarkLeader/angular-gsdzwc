@@ -1,0 +1,79 @@
+<!--
+
+<div class="card text-black bg-white mb-3">
+  <div class="card-header">Lista transacciones
+    <button class="exportXlsx" mat-raised-button color="warn">Export .xlsx</button>
+  <div class="card-body text-primary">
+    <h5 class="card-title">Warning card title</h5>
+    
+
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>COMERCIO</th>
+          <th>TERMINAL</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let transaccion of transaccion">
+          <td>{{ transaccion.nTxGenCounter }}</td>
+          <td>{{ transaccion.cTxMerchantId }}</td>
+          <td>{{ transaccion.cTxTerminalNum }}</td>
+        </tr>
+      </tbody>
+        
+
+    </table>
+  </div>
+
+  -->
+
+  
+    <div class="mat-elevation-z8">
+
+        <button class="buttom-excel" mat-raised-button (click)="addColumn()"><mat-icon aria-hidden="false" aria-label="Example home icon">get_app</mat-icon>.xlsx</button>
+        <button class="buttom-pdf" mat-raised-button (click)="addColumn()"><mat-icon aria-hidden="false" aria-label="Example home icon">get_app</mat-icon>.pdf</button>
+
+        <table mat-table [dataSource]="transaccion">
+      
+          
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> ID </th>
+            <td mat-cell *matCellDef="let transaccion"> {{transaccion.nTxGenCounter}} </td>
+          </ng-container>
+      
+         
+          <ng-container matColumnDef="tipo">
+            <th mat-header-cell *matHeaderCellDef> TIPO </th>
+            <td mat-cell *matCellDef="let transaccion"> {{transaccion.cTxMerchantId}} </td>
+          </ng-container>
+      
+          
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef> NOMBRE </th>
+            <td mat-cell *matCellDef="let transaccion"> {{transaccion.cTxTerminalNum}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="loading">
+            <mat-footer-cell *matFooterCellDef colspan="6">
+              Loading Data...
+            </mat-footer-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="noData">
+            <mat-footer-cell *matFooterCellDef colspan="6">
+              No existen datos
+            </mat-footer-cell>
+          </ng-container>
+          
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':transaccion!=null}"></mat-footer-row>
+          <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(transaccion!=null && transaccion.length==0)}"></mat-footer-row>
+        </table>
+      
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+      </div>
